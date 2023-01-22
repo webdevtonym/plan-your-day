@@ -71,6 +71,10 @@ var hours = [
   {
     hour: 18,
     displayHour: "6pm"
+  },
+  {
+    hour: 19,
+    displayHour: "7pm"
   }
 
 ];
@@ -87,35 +91,25 @@ function displayBlock() {
         <div class= "col-lg-1 col-md-1 time-block">${currentHour.displayHour}</div>
         <textarea id="text-${currentHour.hour}" class="col-lg-10 col-md-10"></textarea>
         <button id="button-${currentHour.hour}" class="fa fa-save col-lg-1 col-md-1 saveBtn"></button>
-      </div>`
-
-
-  
-
+      </div>`; 
 }
+  $("#timeDiv").html(blockHTML); //appends the html to the html div
 
+   for (var j = 0; j < hours.length; j++) {
+     var currentHour = hours[j]; // current hour is equal to the the current index
 
-
-
-
-
-  $("#timeDiv").html(blockHTML);
-
-for(var i = 0; i < hours.length; i++) {
-
+        //Is the current hour more than the hour that it's currently checking
      if (moment().hour() > currentHour.hour) {
        //if the current hour now is equal to the current hour in the list and the hour number in
        $(`#text-${currentHour.hour}`).addClass("past");
+
      } else if (moment().hour() === currentHour.hour) {
        $(`#text-${currentHour.hour}`).addClass("present");
+
      } else {
        $(`#text-${currentHour.hour}`).addClass("future");
      }
-
-}
-
-       
-
+   }
 }
 
 displayBlock();
