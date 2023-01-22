@@ -31,24 +31,7 @@ $("#currentDay").text(currentDate.format("D MM YYYY"));
 //array of hours.
 
 var hours = [
-  {
-    hour: 5,
-    displayHour: "5am",
-  },
-  {
-    hour: 6,
-    displayHour: "6am",
-  },
-  {
-    hour: 7,
-    displayHour: "7am",
-  },
-
-  {
-    hour: 8,
-    displayHour: "8am",
-  },
-
+ 
   {
     hour: 9,
     displayHour: "9am",
@@ -84,31 +67,8 @@ var hours = [
   {
     hour: 17,
     displayHour: "5pm",
-  },
-  {
-    hour: 18,
-    displayHour: "6pm",
-  },
-  {
-    hour: 19,
-    displayHour: "7pm",
-  },
-  {
-    hour: 20,
-    displayHour: "8pm",
-  },
-  {
-    hour: 21,
-    displayHour: "9pm",
-  },
-  {
-    hour: 22,
-    displayHour: "10pm",
-  },
-  {
-    hour: 23,
-    displayHour: "11pm",
-  },
+  }
+
 ];
 
 //-------------------------Create a function to display the divs---------------------------------//
@@ -142,12 +102,12 @@ function displayBlock() {
       $(`#text-${currentHour.hour}`).addClass("future");
     }
 
-     $(`#button-${currentHour.hour}`).on("click", function () {
+     $(`#button-${currentHour.hour}`).on("click", function () { // link to all of the save buttons. 
        console.log("it works");
        // Selecting the text input and save button
-       var textInput = $(`#text-${currentHour.hour}`);
+       var textInput = $(`#text-${currentHour.hour}`); // assigns the current textbox to a variable
     //    var saveButton = $(`#button-${currentHour.hour}`);
-       var textToSave = textInput.val();
+       
 
        // Save it to local storage
 
