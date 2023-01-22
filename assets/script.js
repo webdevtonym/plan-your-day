@@ -31,6 +31,23 @@ $("#currentDay").text(currentDate.format("D MM YYYY"));
 //array of hours.
 
 var hours = [
+  {
+    hour: 5,
+    displayHour: "5am",
+  },
+  {
+    hour: 6,
+    displayHour: "6am",
+  },
+  {
+    hour: 7,
+    displayHour: "7am",
+  },
+
+  {
+    hour: 8,
+    displayHour: "8am",
+  },
 
   {
     hour: 9,
@@ -70,13 +87,28 @@ var hours = [
   },
   {
     hour: 18,
-    displayHour: "6pm"
+    displayHour: "6pm",
   },
   {
     hour: 19,
-    displayHour: "7pm"
-  }
-
+    displayHour: "7pm",
+  },
+  {
+    hour: 20,
+    displayHour: "8pm",
+  },
+  {
+    hour: 21,
+    displayHour: "9pm",
+  },
+  {
+    hour: 22,
+    displayHour: "10pm",
+  },
+  {
+    hour: 23,
+    displayHour: "11pm",
+  },
 ];
 
 //-------------------------Create a function to display the divs---------------------------------//
@@ -91,28 +123,55 @@ function displayBlock() {
         <div class= "col-lg-1 col-md-1 time-block">${currentHour.displayHour}</div>
         <textarea id="text-${currentHour.hour}" class="col-lg-10 col-md-10"></textarea>
         <button id="button-${currentHour.hour}" class="fa fa-save col-lg-1 col-md-1 saveBtn"></button>
-      </div>`; 
-}
+      </div>`;
+
+  }
+
   $("#timeDiv").html(blockHTML); //appends the html to the html div
 
-   for (var j = 0; j < hours.length; j++) {
-     var currentHour = hours[j]; // current hour is equal to the the current index
+  for (var j = 0; j < hours.length; j++) {
+    var currentHour = hours[j]; // current hour is equal to the the current index
 
-        //Is the current hour more than the hour that it's currently checking
-     if (moment().hour() > currentHour.hour) {
-       //if the current hour now is equal to the current hour in the list and the hour number in
-       $(`#text-${currentHour.hour}`).addClass("past");
+    //Is the current hour more than the hour that it's currently checking
+    if (moment().hour() > currentHour.hour) {
+      //if the current hour now is equal to the current hour in the list and the hour number in
+      $(`#text-${currentHour.hour}`).addClass("past");
+    } else if (moment().hour() === currentHour.hour) {
+      $(`#text-${currentHour.hour}`).addClass("present");
+    } else {
+      $(`#text-${currentHour.hour}`).addClass("future");
+    }
 
-     } else if (moment().hour() === currentHour.hour) {
-       $(`#text-${currentHour.hour}`).addClass("present");
+     $(`#button-${currentHour.hour}`).on("click", function () {
+       console.log("it works");
+       // Selecting the text input and save button
+       var textInput = $(`#text-${currentHour.hour}`);
+    //    var saveButton = $(`#button-${currentHour.hour}`);
+       var textToSave = textInput.val();
 
-     } else {
-       $(`#text-${currentHour.hour}`).addClass("future");
-     }
-   }
+       // Save it to local storage
+
+       //i need save the text the enter
+       localStorage.setItem("textEntry", textToSave);
+       console.log(textToSave);
+
+     });
+  }
+
+  
+
+  
 }
 
 displayBlock();
+
+
+    
+
+
+
+
+
 
    
 
