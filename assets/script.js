@@ -31,6 +31,7 @@ $("#currentDay").text(currentDate.format("D MM YYYY"));
 //array of hours.
 
 var hours = [
+
   {
     hour: 9,
     displayHour: "9am",
@@ -67,6 +68,11 @@ var hours = [
     hour: 17,
     displayHour: "5pm",
   },
+  {
+    hour: 18,
+    displayHour: "6pm"
+  }
+
 ];
 
 //-------------------------Create a function to display the divs---------------------------------//
@@ -75,39 +81,48 @@ var hours = [
 function displayBlock() {
   //what the hour is
   var blockHTML = "";
-  for (i = 0; i < hours.length; i++) {
+  for (var i = 0; i < hours.length; i++) {
     var currentHour = hours[i]; // current hour is equal to the the current index
     blockHTML += `<div class = "row">
         <div class= "col-lg-1 col-md-1 time-block">${currentHour.displayHour}</div>
         <textarea id="text-${currentHour.hour}" class="col-lg-10 col-md-10"></textarea>
         <button id="button-${currentHour.hour}" class="fa fa-save col-lg-1 col-md-1 saveBtn"></button>
-      </div>`;
+      </div>`
 
-    if (moment().hour() === currentHour.hour) {
-      $("#text-"+currentHour.hour).addClass("present");
-
-      console.log(moment().hour());
-      console.log(currentHour.hour);
-      console.log($("#text-" + currentHour.hour).attr("class"));
-
-    } else if (moment().hour() < currentHour.hour) {
-      $(`#text-${currentHour.hour}`).addClass("past");
-        
-    } else if (moment().hour() > currentHour.hour) {
-      $(`#text-${currentHour.hour}`).addClass("future");
-    } else {
-      $(`#text-${currentHour.hour}`).addClass("future");
-
-    }
-
-
-  }
-  $("#timeDiv").html(blockHTML);
 
   
+
+}
+
+
+
+
+
+
+  $("#timeDiv").html(blockHTML);
+
+for(var i = 0; i < hours.length; i++) {
+
+     if (moment().hour() > currentHour.hour) {
+       //if the current hour now is equal to the current hour in the list and the hour number in
+       $(`#text-${currentHour.hour}`).addClass("past");
+     } else if (moment().hour() === currentHour.hour) {
+       $(`#text-${currentHour.hour}`).addClass("present");
+     } else {
+       $(`#text-${currentHour.hour}`).addClass("future");
+     }
+
+}
+
+       
+
 }
 
 displayBlock();
+
+   
+
+
 
 //-----------Create a function that checks what the current time is---------------------------------//
 //-----------then make it change color based on if its in the past, present or future-------------//
