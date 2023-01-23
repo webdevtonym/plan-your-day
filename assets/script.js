@@ -91,6 +91,7 @@ function displayBlock() {
 
   for (var j = 0; j < hours.length; j++) {
     var currentHour = hours[j]; // current hour is equal to the the current index
+    $(`#text-${currentHour.hour}`).val(storedText);
 
     //Is the current hour more than the hour that it's currently checking
     if (moment().hour() > currentHour.hour) {
@@ -102,26 +103,30 @@ function displayBlock() {
       $(`#text-${currentHour.hour}`).addClass("future");
     }
 
-     $(`#button-${currentHour.hour}`).on("click", function () { // link to all of the save buttons. 
+     $(`#button-${currentHour.hour}`).on("click", function (currentHour) {
+       // link to all of the save buttons.
        console.log("it works");
        // Selecting the text input and save button
-       var textInput = $(`#text-${currentHour.hour}`); // assigns the current textbox to a variable
-    //    var saveButton = $(`#button-${currentHour.hour}`);
-       
+       var textInput = $(this).prev().val();
 
-       // Save it to local storage
 
-       //i need save the text the enter
-       localStorage.setItem("textEntry", textToSave);
-       console.log(textToSave);
+       //sets a value and saves it to local storage
+       localStorage.setItem(`text-${currentHour.hour}`, textInput);
+    var storedText = localStorage.getItem(`text-${currentHour.hour}`);
 
+    //    var storedText = localStorage.getItem(textInput);
+
+    //    $(`#text-${currentHour.hour}`).val(storedText);
+
+       console.log();
      });
   }
 
   
 
-  
+
 }
+
 
 displayBlock();
 

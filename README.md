@@ -8,7 +8,7 @@
 - This is only to be used by me for studying purposes.
 - A mock-up screenshot of the finished website is provided below.
 
-![Bootstrap-Portfolio](/images/mills-portfolio.png)
+![](/images/workDayScheduler.png)
 
 Link to application: https://webdevtonym.github.io/Bootstrap-Portfolio/
 
