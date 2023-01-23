@@ -1,7 +1,10 @@
 # plan-your-day
 ## Description
 
-- I have created a portfolio using html and bootstrap.
+- I have created a planner website that shows a typical working day calender. Values can be entered into the textboxes and will save to local storage.
+- If the current hour matches the hour in the calendar it will display in red. If it is in the future it will be in green and in the past it is grey.
+- Each time has a button that saves to local storage the value that is entered in the text box and saves to local storage. 
+
 
 ## Usage
 
@@ -10,7 +13,7 @@
 
 ![](/images/workDayScheduler.png)
 
-Link to application: https://webdevtonym.github.io/Bootstrap-Portfolio/
+Link to application: https://webdevtonym.github.io/plan-your-day/
 
 ## License
 

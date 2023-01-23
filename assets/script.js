@@ -91,7 +91,6 @@ function displayBlock() {
 
   for (var j = 0; j < hours.length; j++) {
     var currentHour = hours[j]; // current hour is equal to the the current index
-    $(`#text-${currentHour.hour}`).val(storedText);
 
     //Is the current hour more than the hour that it's currently checking
     if (moment().hour() > currentHour.hour) {
@@ -103,22 +102,27 @@ function displayBlock() {
       $(`#text-${currentHour.hour}`).addClass("future");
     }
 
+
+
+
+
+       //eventListener for click on current button
+
      $(`#button-${currentHour.hour}`).on("click", function (currentHour) {
-       // link to all of the save buttons.
-       console.log("it works");
-       // Selecting the text input and save button
+       
+       // Selecting the text that was entered in the textbox
        var textInput = $(this).prev().val();
 
-
-       //sets a value and saves it to local storage
+       //setting the key and value to local storage (saving both to local storage)
        localStorage.setItem(`text-${currentHour.hour}`, textInput);
-    var storedText = localStorage.getItem(`text-${currentHour.hour}`);
 
-    //    var storedText = localStorage.getItem(textInput);
+        //gets the value and stores it in a variable called storedText
+        var storedText = localStorage.getItem(`text-${currentHour.hour}`);
 
-    //    $(`#text-${currentHour.hour}`).val(storedText);
+        //Needs to stay in the same play after refreshing or closing the window.
 
-       console.log();
+
+
      });
   }
 
