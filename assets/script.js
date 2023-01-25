@@ -31,7 +31,6 @@ $("#currentDay").text(currentDate.format("D MM YYYY"));
 //array of hours.
 
 var hours = [
- 
   {
     hour: 9,
     displayHour: "9am",
@@ -67,8 +66,7 @@ var hours = [
   {
     hour: 17,
     displayHour: "5pm",
-  }
-
+  },
 ];
 
 //-------------------------Create a function to display the divs---------------------------------//
@@ -84,7 +82,6 @@ function displayBlock() {
         <textarea id="text-${currentHour.hour}" class="col-lg-10 col-md-10"></textarea>
         <button id="button-${currentHour.hour}" class="fa fa-save col-lg-1 col-md-1 saveBtn"></button>
       </div>`;
-
   }
 
   $("#timeDiv").html(blockHTML); //appends the html to the html div
@@ -101,65 +98,31 @@ function displayBlock() {
     } else {
       $(`#text-${currentHour.hour}`).addClass("future");
     }
-
-
-
-
-
-       //eventListener for click on current button
-
-     $(`#button-${currentHour.hour}`).on("click", function (currentHour) {
-       
-       // Selecting the text that was entered in the textbox
-       var textInput = $(this).prev().val();
-
-       //setting the key and value to local storage (saving both to local storage)
-       localStorage.setItem(`text-${currentHour.hour}`, textInput);
-
-        //gets the value and stores it in a variable called storedText
-        var storedText = localStorage.getItem(`text-${currentHour.hour}`);
-
-        //Needs to stay in the same play after refreshing or closing the window.
-
-
-
-     });
   }
-
-  
-
-
 }
-
 
 displayBlock();
 
+//document.ready JQuery function that will only run the code inside it once everything has loaded.
+$(document).ready(function () {
+  //for loop that
+  for (var i = 0; i < hours.length; i++) {
+    var currentHour = hours[i];
 
-    
+    //retrieve value after refresh
+    $(`#text-${currentHour.hour}`).val(
+      localStorage.getItem(`text-${currentHour.hour}`)
+    );
+  }
 
+  //eventListener for button click event
+  $(".saveBtn").on("click", function (currentHour) {
+    //test click even works
+    console.log("click even working");
 
+    var hour = $(this).attr("id").split("-")[1];
 
-
-
-
-   
-
-
-
-//-----------Create a function that checks what the current time is---------------------------------//
-//-----------then make it change color based on if its in the past, present or future-------------//
-
-//Color-code each timeblock based on past, present, and future when the timeblock is viewed.
-
-//if the current time is 'right now' then that element should have a background color of red.
-//else if - the array elements are less than the current time.
-//set the background color of those elements to grey.
-
-//else if - the array elements are more than the current time
-//set background color to green.
-
-// function changeTimeblockColour() {
-
-// }
-
-// changeTimeblockColour();
+    //save value to local storage
+    localStorage.setItem(`text-${hour}`, $(`#text-${hour}`).val());
+  });
+});
